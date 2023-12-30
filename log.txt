@@ -1,0 +1,12 @@
+All messages:
+Sat Dec 30 13:49:32 2023 - ))): 123
+Sat Dec 30 13:49:41 2023 - ))): 123
+Sat Dec 30 13:53:21 2023 - Ирина М.: /start
+Sat Dec 30 13:53:26 2023 - Ирина М.: Опа
+Sat Dec 30 13:53:35 2023 - kate: борис, ты лох
+Sat Dec 30 13:55:14 2023 - ))): борис!!!
+Sat Dec 30 13:55:59 2023 - Brotihka: /start
+Sat Dec 30 13:56:03 2023 - Brotihka: /start
+Sat Dec 30 13:56:04 2023 - Brotihka: /start
+Sat Dec 30 13:56:23 2023 - Brotihka: Пизда
+Sat Dec 30 13:56:28 2023 - Brotihka: Сам пизда
