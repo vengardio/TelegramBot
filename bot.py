@@ -36,14 +36,15 @@ def addUserID(message): #[kate 904480006]
             newLine = message.from_user.first_name + " " + str(message.from_user.id) + "\n"
             users.write(newLine)
 
-def takeUserID():
+def returnUserList():
     with open("users.txt", "r") as users:
-        users = users.read()
-        usersList = list(users.split("\n"))
-        for i in range(len(usersList)-1):
-            usersList[i] = list(usersList[i].split(" "))
-            if towho == usersList[i][0]:
-                return usersList[i][1]
+        users = list(users.read().split("\n"))
+        users = users[:-1]
+        userList = {}
+        for i in range(len(users)):
+            users[i] = list(users[i].split(" "))
+            userList[users[i][0]] = int(users[i][1])
+    return userList
 
 @bot.message_handler(commands=['start'])
 def main(message):
@@ -73,25 +74,23 @@ def stop(message):
 @bot.message_handler(content_types=['text'])
 def default(message):
     global istexting
+    global towho
     to_logs_message(message)
     addUserID(message)
     if istexting == True:
         bot.send_message(message.chat.id, "Сообщение отправлено!")
-        bot.send_message(takeUserID(), message.text)
+        bot.send_message(returnUserList()[towho], message.text)
 
 @bot.callback_query_handler(func=lambda callback: True)
 def callback_message(callback):
     global istexting
+    global towho
     if callback.data == "textToUser1":
         towho = 'kate'
         istexting = True
-        print(towho)
-        print(istexting)
     elif callback.data == "textToUser2":
         towho = ')))'
         istexting = True
-        print(towho)
-        print(istexting)
     elif callback.data == "sending":
         to_logs_text(callback, "/хочет отправить сообщение/")
 
