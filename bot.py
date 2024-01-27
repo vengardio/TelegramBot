@@ -10,18 +10,18 @@ global towho
 towho = "name"
 
 def to_logs_message(message):
-    with open("log.txt", "a", encoding='utf-8') as logs: #write user message to logs
+    with open("TelegramBot-main\\log.txt", "a", encoding='utf-8') as logs: #write user message to logs
         newLine = "\n" + time.ctime(time.time()) + " - "  +  str(message.from_user.first_name) + ": " + str(message.text)
         logs.write(newLine)
 
 def to_logs_text(message, text):
-    with open("log.txt", "a", encoding='utf-8') as logs: #write user message to logs
+    with open("TelegramBot-main\\log.txt", "a", encoding='utf-8') as logs: #write user message to logs
         newLine = "\n" + time.ctime(time.time()) + " - "  +  str(message.from_user.first_name) + ": " + str(text)
         logs.write(newLine)
 
 def addUserID(message): #[kate 904480006]
     userHere = False
-    with open("users.txt", "r") as users:
+    with open("TelegramBot-main\\users.txt", "r") as users:
         users = users.read()
         usersList = list(users.split("\n"))
     usersList = usersList[:-1]
@@ -32,12 +32,12 @@ def addUserID(message): #[kate 904480006]
             userHere = True
             break
     if userHere == False:
-        with open("users.txt", "a") as users:
+        with open("TelegramBot-main\\users.txt", "a") as users:
             newLine = message.from_user.first_name + " " + str(message.from_user.id) + "\n"
             users.write(newLine)
 
 def returnUserList():
-    with open("users.txt", "r") as users:
+    with open("TelegramBot-main\\users.txt", "r") as users:
         users = list(users.read().split("\n"))
         users = users[:-1]
         userList = {}
@@ -87,13 +87,13 @@ def callback_message(callback):
     global towho
     if callback.data == "textToUser1":
         towho = 'kate'
+        to_logs_text(callback, "/хочет отправить сообщение kate/")
         istexting = True
     elif callback.data == "textToUser2":
+        to_logs_text(callback, "/хочет отправить сообщение )))/")
         towho = ')))'
         istexting = True
     elif callback.data == "sending":
-        to_logs_text(callback, "/хочет отправить сообщение/")
-
         markup2 = types.InlineKeyboardMarkup()
         butuser1 = types.InlineKeyboardButton("kate", callback_data='textToUser1')
         butuser2 = types.InlineKeyboardButton(")))", callback_data='textToUser2')
